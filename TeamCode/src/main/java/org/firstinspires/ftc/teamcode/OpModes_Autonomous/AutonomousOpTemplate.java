@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.RobotConfiguration;
 import org.firstinspires.ftc.teamcode.TeamConstants;
 
 @Disabled
-@Autonomous(name="AutoTeamColorDescriptor", group="Autonomous")
+@Autonomous(name="AutoTeamColorDescriptor", group="Autonomous", preselectTeleOp = "TeleOp")
 public class AutonomousOpTemplate extends RobotConfiguration implements TeamConstants {
 
     @Override
