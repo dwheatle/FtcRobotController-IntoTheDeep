@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.OpModes_TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Cogintilities.DataLogger;
 import org.firstinspires.ftc.teamcode.RobotConfiguration;
@@ -18,6 +19,9 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
             .addParam("RJSTKX", "*")
             .build();
 
+    int SAMPLE_RATE = 10; // Hz
+    ElapsedTime acquisitionTime = new ElapsedTime();
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -30,8 +34,7 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
 
         while (opModeIsActive()) {
 
-            updateDataLog();
-            sleep(100);
+            if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) updateDataLog();
 
         }
 
@@ -43,6 +46,7 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
      * in the DataLogger constructor.
      */
     void updateDataLog() {
+        acquisitionTime.reset();
         log.addValue(gamepad1.left_stick_x);
         log.addValue(gamepad1.left_stick_y);
         log.addValue(gamepad1.right_stick_x);
