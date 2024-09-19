@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Cogintilities.GamepadWrapper;
+package org.firstinspires.ftc.teamcode.Cogintilities;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
