@@ -15,6 +15,9 @@ public class TeleOpTemplate extends RobotConfiguration implements TeamConstants 
 
         initializeRobot();
 
+        telemetry.addData("OpMode: ", this.toString());
+        telemetry.update();
+
         waitForStart();
 
         while (opModeIsActive()) {
