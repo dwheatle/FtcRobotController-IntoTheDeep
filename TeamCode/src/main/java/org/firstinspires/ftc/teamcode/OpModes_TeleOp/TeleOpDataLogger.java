@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 import org.firstinspires.ftc.teamcode.Cogintilities.DataLogger;
 import org.firstinspires.ftc.teamcode.RobotConfiguration;
 import org.firstinspires.ftc.teamcode.TeamConstants;
@@ -26,15 +27,18 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
     public void runOpMode() throws InterruptedException {
 
         //initializeRobot();
-
+        telemetry.addData("What is this? ", this.getClass().toString());
         telemetry.addData("OpMode: ", this.toString());
+        telemetry.addData("USB Path: ", AppUtil.getInstance().getUsbFileSystemRoot());
         telemetry.update();
 
         waitForStart();
 
         while (opModeIsActive()) {
 
-            if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) updateDataLog();
+            if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) {
+//                updateDataLog();
+            }
 
         }
 

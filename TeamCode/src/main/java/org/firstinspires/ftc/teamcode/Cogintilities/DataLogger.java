@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.Cogintilities;
 
 
+import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
+import org.firstinspires.ftc.teamcode.RobotConfiguration;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,12 +40,20 @@ public class DataLogger {
 
         this.opMode = builder.opMode;
         this.params = builder.params;
-        this.units = builder.units;
+        this.units  = builder.units;
 
+        /* Add Default Parameters */
         this.params.add(0,"TIME");
         this.units.add(0,"s");
+
         this.params.add(1,"dt");
         this.units.add(1, "ms");
+
+        this.params.add("CTRLHUBV");
+        this.units.add("V");
+
+        this.params.add("EXPHUBV");
+        this.units.add("V");
 
         now = new Date();
 
@@ -64,7 +75,7 @@ public class DataLogger {
     public static class Builder {
 
         private List<String> params = new ArrayList<>();
-        private List<String> units = new ArrayList<>();
+        private List<String> units  = new ArrayList<>();
         private String opMode;
 
 
@@ -77,7 +88,6 @@ public class DataLogger {
             this.units.add(units);
             return this;
         }
-
 
         public DataLogger build() {
 
@@ -96,6 +106,8 @@ public class DataLogger {
         lineBuffer.append("Opmode: ");
         lineBuffer.append(opMode);
         lineBuffer.append("\nAcquisition Started: ");
+
+        //      Get Battery Voltage  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
         String formattedDate = sdf.format(now);
@@ -129,10 +141,12 @@ public class DataLogger {
      * Tries to open a data file for writing
      */
     private void openDataFile() {
-
+//AppUtil.getInstance().getSettingsFile();
+        directoryPath = AppUtil.getInstance().getUsbFileSystemRoot();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String formattedDate = sdf.format(now);
 
+        // File file = AppUtil.getInstance().getSettingsFile(formattedDate + " " + opMode);
         String filePath = directoryPath + "/" + formattedDate + " " + opMode + ".txt";
 
         new File(directoryPath).mkdir();  // create Datalogs folder if needed
@@ -223,13 +237,27 @@ public class DataLogger {
     /*************************** END OVERRIDES ***************************/
 
     /**
-     * Must be called to commit the values added using the addValue functions.
+     * Must be called to commit the values added using the addValue functions. Builds the output
+     * line consisting of the time stamp, followed by the parameter data and lastly the battery
+     * voltages of the control hubs.
      */
     public void acquire() {
+
+        /** Build output line to write to follow **/
+        /* Insert Time */
         getTimeStamp();
         lineBuffer.append(timeBuffer);
         lineBuffer.append(",");
+
+        /* Append parameter data */
         lineBuffer.append(paramBuffer);
+
+        /* Append control hub battery voltages */
+        lineBuffer.append(',');
+        lineBuffer.append(RobotConfiguration.ctrlHubV());
+        lineBuffer.append(',');
+        lineBuffer.append(RobotConfiguration.expHubV());
+
         writeToFile();
     }
 
@@ -241,7 +269,6 @@ public class DataLogger {
         lineBuffer.setLength(0);                // clear the line (row)
         paramBuffer.setLength(0);
         timeBuffer.setLength(0);
-
     }
 
 
@@ -251,7 +278,6 @@ public class DataLogger {
     private void getTimeStamp() {
 
         long milliTime, nanoTime;
-
 
         // Update time for first two columns (cumulative and incremental time).
         milliTime   = System.currentTimeMillis();

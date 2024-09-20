@@ -50,7 +50,7 @@ public class VisionPortalObject {
         while (visionPortal.getCameraState() != VisionPortal.CameraState.STREAMING) {
         }
         setManualExposure(CAMERA_EXPOSURE, CAMERA_GAIN);
-
+visionPortal.saveNextFrameRaw("deleteMe");
     }
 
     /**

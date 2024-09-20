@@ -5,10 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.VoltageUnit;
 import org.firstinspires.ftc.teamcode.Cogintilities.VisionProcessors.VisionPortalObject;
 import org.firstinspires.ftc.teamcode.SubSytems.MecanumDrive;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * This class should be used to define all the subsystem modules and assign the hardware used in
@@ -27,10 +30,12 @@ public abstract class RobotConfiguration extends LinearOpMode {
 
     /*------------- Private Class Variables - Preferred -------------*/
     static AllianceColor alliance;
+    static List<LynxModule> ctrlHubs;
     /* keyword 'static' indicates that this variable exists in only one memory location. Static
     attributes and methods belong to the class rather than the object.  In this case, all classes
     that extend this class will have the same value for 'alliance'. This allows the value to persist
     through autonomous and teleOp modes */
+
 
     /*----------- Define all Module Classes (SubSystems) -----------*/
     protected MecanumDrive drive = null;
@@ -51,7 +56,6 @@ public abstract class RobotConfiguration extends LinearOpMode {
     public void initializeRobot() throws InterruptedException {
 
         /* Find all Control Hubs and Set Sensor Bulk Read Mode to AUTO */
-        List<LynxModule> ctrlHubs;
         ctrlHubs = hardwareMap.getAll(LynxModule.class);
         for (LynxModule hub : ctrlHubs) {
             hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -82,6 +86,22 @@ public abstract class RobotConfiguration extends LinearOpMode {
     /* ********* Setters, Getters, Utility and Helper Functions ********** */
     public void setAlliance(AllianceColor color){ alliance = color; }
     public static AllianceColor getAlliance(){ return alliance; }
+
+//    public String hubA() {
+//        double currentmA = 0;
+//        for (LynxModule hub : ctrlHubs) {
+//            currentmA += hub.getCurrent(CurrentUnit.AMPS);
+//        }
+//        return String.format(Locale.getDefault(), "%.3f mA", currentmA);
+//    }
+
+    public static String ctrlHubV() {
+        return String.format(Locale.getDefault(), "%.3f V", ctrlHubs.get(0).getInputVoltage(VoltageUnit.VOLTS));
+    }
+
+    public static String expHubV() {
+        return String.format(Locale.getDefault(), "%.3f V", ctrlHubs.get(1).getInputVoltage(VoltageUnit.VOLTS));
+    }
 
 
 }
