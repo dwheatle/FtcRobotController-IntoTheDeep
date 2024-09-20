@@ -37,7 +37,7 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
         while (opModeIsActive()) {
 
             if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) {
-//                updateDataLog();
+                updateDataLog();
             }
 
         }
