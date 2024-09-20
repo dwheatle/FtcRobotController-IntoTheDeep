@@ -34,6 +34,7 @@ public class GamepadWrapper {
     MomentaryButton btnStart = new MomentaryButton(false,false);
     MomentaryButton btnGuide = new MomentaryButton(false,false);;
 
+
     /**
      * Constructor
      * Creates a gamepad wrapper object.
@@ -91,6 +92,7 @@ public class GamepadWrapper {
 
         left_bumper = btnLbumper.state();
         right_bumper = btnRbumper.state();
+
         back = btnBack.state();
         start = btnStart.state();
         guide = btnGuide.state();
