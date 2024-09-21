@@ -27,11 +27,7 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
     public void runOpMode() throws InterruptedException {
 
         //initializeRobot();
-        telemetry.addData("What is this? ", this.getClass().toString());
-            /* class.org.firstinspires.ftc.teamcode.OpModes_TeleOp.TeleOpFileSystem */
-        telemetry.addData("OpMode: ", this.toString()); /* Do Not Use */
-        telemetry.addData("USB Path: ", AppUtil.getInstance().getUsbFileSystemRoot());
-        /* /dev/bus/usb */
+        telemetry.addData("OpMode: ", this.getClass().toString());
         telemetry.update();
 
         waitForStart();
@@ -41,7 +37,6 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
             if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) {
                 updateDataLog();
             }
-
         }
 
         log.closeDataLogger();

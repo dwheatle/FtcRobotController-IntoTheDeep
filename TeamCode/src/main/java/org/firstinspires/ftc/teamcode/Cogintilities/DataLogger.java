@@ -41,7 +41,9 @@ public class DataLogger {
 
         lineBuffer.setLength(0);
 
-        this.opMode = builder.opMode;
+        /* opMode passed in as this.getClass().toString()) */
+        this.opMode = (builder.opMode).substring(((builder.opMode).lastIndexOf(".")+1));
+
         this.params = builder.params;
         this.units  = builder.units;
 
@@ -65,22 +67,12 @@ public class DataLogger {
     }
 
 
-    public String getMode() {
-        return opMode;
-    }
-
-    public void showHeadings() {
-        System.out.println(params);
-        System.out.println(units);
-    }
-
     /** Builder Class **/
     public static class Builder {
 
         private List<String> params = new ArrayList<>();
         private List<String> units  = new ArrayList<>();
         private String opMode;
-
 
         public Builder(String opMode) {
             this.opMode = opMode;
@@ -92,11 +84,7 @@ public class DataLogger {
             return this;
         }
 
-        public DataLogger build() {
-
-            return new DataLogger(this);
-        }
-
+        public DataLogger build() { return new DataLogger(this); }
     }
     /************************** END CONSTRUCTOR **************************/
 
@@ -110,9 +98,9 @@ public class DataLogger {
         lineBuffer.append(opMode);
         lineBuffer.append("\nAcquisition Started: ");
 
-        //      Get Battery Voltage  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
+        // Get Battery Voltage  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd", Locale.US);
         String formattedDate = sdf.format(now);
         lineBuffer.append(formattedDate);
         lineBuffer.append("\n\n");
@@ -166,37 +154,6 @@ public class DataLogger {
     }
 
 
-    /**
-     * Write data contained in the lineBuffer to the file.  Should be one line of common sererated
-     * values.
-     */
-    private void writeToFile(){
-
-        try {
-            lineBuffer.append('\n');                // end-of-line character
-            fileWriter.write(lineBuffer.toString());    // add line (row) to file
-
-            startNewRow();
-
-        }
-        catch (IOException e) {
-//            System.out.println("Uh oh..., trouble in the wirteToFile method");
-//            System.out.println(e);
-        }
-
-    }
-
-    /**
-     * Close the file.  File must be closed in the teleOp in order for the file to be saved.
-     */
-    public void closeDataLogger() {
-        try {
-            fileWriter.close();             // close the file
-        }
-        catch (IOException e) {
-        }
-    }
-
     // These two (overloaded) methods add a text field to the line (row),
     // proceded by a comma.  This creates the comma-separated values (CSV).
 
@@ -221,23 +178,20 @@ public class DataLogger {
     public void addValue(byte b) {
         addValue(Byte.toString(b));
     }
-
     public void addValue(short s) {
         addValue(Short.toString(s));
     }
-
     public void addValue(long l) {
         addValue(Long.toString(l));
     }
-
     public void addValue(float f) {
         addValue(Float.toString(f));
     }
-
     public void addValue(double d) {
         addValue(Double.toString(d));
     }
     /*************************** END OVERRIDES ***************************/
+
 
     /**
      * Must be called to commit the values added using the addValue functions. Builds the output
@@ -246,7 +200,7 @@ public class DataLogger {
      */
     public void acquire() {
 
-        /** Build output line to write to follow **/
+        /** Build output line to write to the file **/
         /* Insert Time */
         getTimeStamp();
         lineBuffer.append(timeBuffer);
@@ -266,16 +220,6 @@ public class DataLogger {
 
 
     /**
-     * Start a new data row. Clears all data buffers.
-     */
-    private void startNewRow() {
-        lineBuffer.setLength(0);                // clear the line (row)
-        paramBuffer.setLength(0);
-        timeBuffer.setLength(0);
-    }
-
-
-    /**
      * Function to time stamp the data line.
      */
     private void getTimeStamp() {
@@ -286,20 +230,55 @@ public class DataLogger {
         milliTime   = System.currentTimeMillis();
         nanoTime    = System.nanoTime();
 
-        // Insert timestamps at position 0, *before* the OpMode data fields.
         timeBuffer.setLength(0);
-        timeBuffer.append(String.format("%.3f", (milliTime - timeBase) / 1000.0));
+        timeBuffer.append(String.format(Locale.US,"%.3f", (milliTime - timeBase) / 1000.0));
         timeBuffer.append(',' );
-        timeBuffer.append(String.format("%.1f",(nanoTime - nsBase) / 1.0E6));
-
-        // Divide milliseconds by 1,000 to log seconds, in field named "Time".
-        // Divide nanoseconds by 1,000,000 to log milliseconds, in "d ms".
-
-        // The 1000.0 decimal and 1.0E6 scientific notation avoid a type error;
-        // the expressions' variables are 'long'.
+        timeBuffer.append(String.format(Locale.US, "%.1f",(nanoTime - nsBase) / 1.0E6));
 
         nsBase = nanoTime;         // reset for incremental time delta
+    }
 
+
+    /**
+     * Start a new data row. Clears all data buffers.
+     */
+    private void startNewRow() {
+        lineBuffer.setLength(0);                // clear the line (row)
+        paramBuffer.setLength(0);
+        timeBuffer.setLength(0);
+    }
+
+
+    /**
+     * Write data contained in the lineBuffer to the file.  Should be one line of common sererated
+     * values.
+     */
+    private void writeToFile(){
+
+        try {
+            lineBuffer.append('\n');                // end-of-line character
+            fileWriter.write(lineBuffer.toString());    // add line (row) to file
+
+            startNewRow();
+
+        }
+        catch (IOException e) {
+//            System.out.println("Uh oh..., trouble in the wirteToFile method");
+//            System.out.println(e);
+        }
+
+    }
+
+
+    /**
+     * Close the file.  File must be closed in the teleOp in order for the file to be saved.
+     */
+    public void closeDataLogger() {
+        try {
+            fileWriter.close();             // close the file
+        }
+        catch (IOException e) {
+        }
     }
 
 }
