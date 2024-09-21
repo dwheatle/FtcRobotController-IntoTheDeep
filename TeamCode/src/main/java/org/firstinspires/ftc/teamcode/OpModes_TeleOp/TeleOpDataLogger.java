@@ -28,8 +28,10 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
 
         //initializeRobot();
         telemetry.addData("What is this? ", this.getClass().toString());
-        telemetry.addData("OpMode: ", this.toString());
+            /* class.org.firstinspires.ftc.teamcode.OpModes_TeleOp.TeleOpFileSystem */
+        telemetry.addData("OpMode: ", this.toString()); /* Do Not Use */
         telemetry.addData("USB Path: ", AppUtil.getInstance().getUsbFileSystemRoot());
+        /* /dev/bus/usb */
         telemetry.update();
 
         waitForStart();

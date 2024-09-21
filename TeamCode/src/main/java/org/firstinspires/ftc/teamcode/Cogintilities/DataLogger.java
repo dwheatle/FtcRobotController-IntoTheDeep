@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Cogintilities;
 
 
+import android.os.Environment;
+
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 import org.firstinspires.ftc.teamcode.RobotConfiguration;
 
@@ -12,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DataLogger {
 
@@ -141,9 +144,9 @@ public class DataLogger {
      * Tries to open a data file for writing
      */
     private void openDataFile() {
-//AppUtil.getInstance().getSettingsFile();
-        directoryPath = AppUtil.getInstance().getUsbFileSystemRoot();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+;
+        directoryPath =  Environment.getExternalStorageDirectory().getPath() + "/Datalogs";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
         String formattedDate = sdf.format(now);
 
         // File file = AppUtil.getInstance().getSettingsFile(formattedDate + " " + opMode);
