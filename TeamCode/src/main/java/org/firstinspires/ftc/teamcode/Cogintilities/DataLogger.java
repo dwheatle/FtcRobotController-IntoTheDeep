@@ -98,8 +98,6 @@ public class DataLogger {
         lineBuffer.append(opMode);
         lineBuffer.append("\nAcquisition Started: ");
 
-        // Get Battery Voltage  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd");
-
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyyLLLdd", Locale.US);
         String formattedDate = sdf.format(now);
         lineBuffer.append(formattedDate);
