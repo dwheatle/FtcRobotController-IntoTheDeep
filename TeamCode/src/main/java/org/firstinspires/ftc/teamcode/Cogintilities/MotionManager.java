@@ -1,10 +1,5 @@
 package org.firstinspires.ftc.teamcode.Cogintilities;
 
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MotionManager {
 
     private int minSetpt, maxSetpt;
@@ -16,13 +11,23 @@ public class MotionManager {
     }
 
 
-    public void moveToPostion() {
+    public void clampSetpoint(double setpoint) {
 
     }
 
 
-    public void clampSetpoint() {
+    public void clampSetpoint(int setpoint) {
 
+    }
+
+
+    public boolean minPositionLimitExceeded() {
+        return false;
+    }
+
+
+    public boolean maxPositionLimitExceeded() {
+        return false;
     }
 
 }
