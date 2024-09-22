@@ -7,39 +7,19 @@ import java.util.List;
 
 public class MotionManager {
 
-    DcMotorEx motor;
-
-    public double maxTravel, minTravel;
-
-
-    public MotionManager(Builder builder) {
-
-    }
-
-    /** Builder Class **/
-    public static class Builder {
+    private int minSetpt, maxSetpt;
+    private double maxTravel, minTravel, minSetpoint, maxSetpoint;
 
 
-        public Builder(String opMode) {
-        }
-
-        public MotionManager.Builder addParam() {
-            return this;
-        }
-
-        public MotionManager build() {
-            return new MotionManager(this);
-        }
-    }
-
-
-    public void jog() {
+    public MotionManager() {
 
     }
+
 
     public void moveToPostion() {
 
     }
+
 
     public void clampSetpoint() {
 
