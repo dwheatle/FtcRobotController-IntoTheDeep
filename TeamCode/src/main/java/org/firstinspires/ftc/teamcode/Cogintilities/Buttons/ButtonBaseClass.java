@@ -32,8 +32,9 @@ public abstract class ButtonBaseClass {
         lastState = currentState;
         currentState = buttonValue;
 
-        return currentState ^ lastState; /* XOR function, only returns true when the currentState
-                                            does not equal the lastState */
+        return currentState && !lastState;
+//        return currentState ^ lastState; /* XOR function, only returns true when the currentState
+//                                            does not equal the lastState */
     }
 
 
