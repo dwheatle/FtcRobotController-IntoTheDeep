@@ -19,7 +19,6 @@ import java.util.Locale;
 public class DataLogger {
 
     private final String opMode;
-    private String directoryPath; // = "/home/dw/Documents/Java Scratch/Data";
 
     private Writer fileWriter;
     private List<String> params = new ArrayList<>();
@@ -131,7 +130,8 @@ public class DataLogger {
      */
     private void openDataFile() {
 ;
-        directoryPath =  Environment.getExternalStorageDirectory().getPath() + "/Datalogs";
+        // = "/home/dw/Documents/Java Scratch/Data";
+        String directoryPath = Environment.getExternalStorageDirectory().getPath() + "/Datalogs";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
         String formattedDate = sdf.format(now);
 
