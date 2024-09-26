@@ -56,8 +56,8 @@ public class DataLogger {
         this.params.add("CTRLHUBV");
         this.units.add("V");
 
-        this.params.add("EXPHUBV");
-        this.units.add("V");
+//        this.params.add("EXPHUBV");
+//        this.units.add("V");
 
         now = new Date();
 
@@ -210,8 +210,8 @@ public class DataLogger {
         /* Append control hub battery voltages */
         lineBuffer.append(',');
         lineBuffer.append(RobotConfiguration.ctrlHubV());
-        lineBuffer.append(',');
-        lineBuffer.append(RobotConfiguration.expHubV());
+//        lineBuffer.append(',');
+//        lineBuffer.append(RobotConfiguration.expHubV());
 
         writeToFile();
     }
