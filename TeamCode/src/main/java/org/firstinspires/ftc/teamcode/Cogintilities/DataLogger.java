@@ -173,18 +173,10 @@ public class DataLogger {
         paramBuffer.append(c);
     }
 
-    public void addValue(byte b) {
-        addValue(Byte.toString(b));
-    }
-    public void addValue(short s) {
-        addValue(Short.toString(s));
-    }
-    public void addValue(long l) {
-        addValue(Long.toString(l));
-    }
-    public void addValue(float f) {
-        addValue(Float.toString(f));
-    }
+    public void addValue(byte   b) { addValue(Byte.toString(b)); }
+    public void addValue(short  s) { addValue(Short.toString(s));}
+    public void addValue(long   l) { addValue(Long.toString(l)); }
+    public void addValue(float  f) { addValue(Float.toString(f)); }
     public void addValue(double d) {
         addValue(Double.toString(d));
     }
