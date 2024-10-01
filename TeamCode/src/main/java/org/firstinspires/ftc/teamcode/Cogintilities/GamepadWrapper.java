@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Cogintilities;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Cogintilities.Buttons.MomentaryButton;
+import org.firstinspires.ftc.teamcode.Cogintilities.Buttons.OneShotButton;
 
 /**
  * This class provides a wrapper around the gamepad class to allow for extra functionality of the
@@ -27,8 +28,8 @@ public class GamepadWrapper {
     MomentaryButton btnDpadLeft  = new MomentaryButton(false,false);
     MomentaryButton btnDpadRight = new MomentaryButton(false,false);
 
-    MomentaryButton btnLbumper = new MomentaryButton(false,false);
-    MomentaryButton btnRbumper = new MomentaryButton(false,false);
+    OneShotButton btnLbumper = new OneShotButton(false,false);
+    OneShotButton btnRbumper = new OneShotButton(false,false);
 
     MomentaryButton btnBack  = new MomentaryButton(false,false);
     MomentaryButton btnStart = new MomentaryButton(false,false);
