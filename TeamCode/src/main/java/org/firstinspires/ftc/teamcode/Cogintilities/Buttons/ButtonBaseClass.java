@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode.Cogintilities.Buttons;
 public abstract class ButtonBaseClass {
 
     private boolean currentState;
-    private boolean lastState;
-    private final boolean invertState;
+    protected boolean lastState;
     protected boolean controlState;
+    private final boolean invertState;
 
 
     /**

@@ -14,6 +14,7 @@ public class OneShotButton extends ButtonBaseClass {
         super(initialState, invertOutput);
     }
 
+
     /**
      * This should be called once every time the runOpMode loop executes to update the value of
      * the button.
@@ -22,7 +23,8 @@ public class OneShotButton extends ButtonBaseClass {
      */
     @Override
     public void update(boolean physicalButtonValue) {
-
-        controlState = physicalButtonValue && !controlState;
+        controlState = physicalButtonValue && !lastState;
+        buttonStateChanged(physicalButtonValue);            /* Update current and last states */
     }
+
 }
