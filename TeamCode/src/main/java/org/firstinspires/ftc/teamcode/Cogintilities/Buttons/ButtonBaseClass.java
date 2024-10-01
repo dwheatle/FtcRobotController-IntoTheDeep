@@ -54,5 +54,6 @@ public abstract class ButtonBaseClass {
     */
     public boolean state() { return (controlState ^ invertState); }
     //    public boolean state() { return !(controlState & invertState); } /* NAND function */
+
 }
 
