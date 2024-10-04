@@ -56,3 +56,12 @@ public abstract class ButtonBaseClass {
 
 }
 
+/*
+    Button Types
+        whenPressed  - true on rising edge (Inverted: when released - true on falling edge)
+        whilePressed - true on rising edge (Inverted: whileNOtPressed)
+        toggle - true when pressed and stays true until pressed again (Inverted: states reversed)
+        timed - true when pressed and remains true for a specified amount of time
+
+ */
+

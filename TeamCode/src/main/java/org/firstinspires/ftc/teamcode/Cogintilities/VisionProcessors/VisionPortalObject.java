@@ -85,4 +85,10 @@ visionPortal.saveNextFrameRaw("deleteMe");
     public float fps() { return visionPortal.getFps(); }
 
 
+    /**
+     * All subsystems should contain a periodic method to check for any limit exceedances or needs
+     * to update anything on a periodic basis, typically once per loop in runOpMode.
+     */
+    public void periodic() { }
+
 }
