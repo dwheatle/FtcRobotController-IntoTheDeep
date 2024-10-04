@@ -15,34 +15,36 @@ public class GamepadWrapper {
     private final Gamepad gp;
 
     public double leftStick_X, leftStick_Y, rightStick_X, rightStick_Y, leftTrigger, rightTrigger;
-    public Boolean A,B,X,Y,dpad_up,dpad_down,dpad_left,dpad_right,left_bumper, right_bumper, back, start, guide;
+    public Boolean A, B, X, Y, dpad_up, dpad_down, dpad_left, dpad_right, left_bumper, right_bumper, back, start, guide;
 
     /* Change button behavior here if needed */
-    MomentaryButton btnA = new MomentaryButton(false,false);
-    MomentaryButton btnB = new MomentaryButton(false,false);
-    MomentaryButton btnX = new MomentaryButton(false,false);
-    MomentaryButton btnY = new MomentaryButton(false,false);
+    MomentaryButton btnA = new MomentaryButton(false, false);
+    MomentaryButton btnB = new MomentaryButton(false, false);
+    MomentaryButton btnX = new MomentaryButton(false, false);
+    MomentaryButton btnY = new MomentaryButton(false, false);
 
-    MomentaryButton btnDpadUp    = new MomentaryButton(false,false);
-    MomentaryButton btnDpadDown  = new MomentaryButton(false,false);
-    MomentaryButton btnDpadLeft  = new MomentaryButton(false,false);
-    MomentaryButton btnDpadRight = new MomentaryButton(false,false);
+    MomentaryButton btnDpadUp = new MomentaryButton(false, false);
+    MomentaryButton btnDpadDown = new MomentaryButton(false, false);
+    MomentaryButton btnDpadLeft = new MomentaryButton(false, false);
+    MomentaryButton btnDpadRight = new MomentaryButton(false, false);
 
-    OneShotButton btnLbumper = new OneShotButton(false,false);
-    OneShotButton btnRbumper = new OneShotButton(false,false);
+    OneShotButton btnLbumper = new OneShotButton(false, false);
+    OneShotButton btnRbumper = new OneShotButton(false, false);
 
-    MomentaryButton btnBack  = new MomentaryButton(false,false);
-    MomentaryButton btnStart = new MomentaryButton(false,false);
-    MomentaryButton btnGuide = new MomentaryButton(false,false);;
+    MomentaryButton btnBack = new MomentaryButton(false, false);
+    MomentaryButton btnStart = new MomentaryButton(false, false);
+    MomentaryButton btnGuide = new MomentaryButton(false, false);
 
 
     /**
      * Constructor
      * Creates a gamepad wrapper object.
+     *
      * @param gamepad Gamepad whose buttons are to be modified.
      */
     public GamepadWrapper(Gamepad gamepad) {
         gp = gamepad;
+        update();
     }
 
 
@@ -99,5 +101,16 @@ public class GamepadWrapper {
         guide = btnGuide.state();
 
     }
-
 }
+
+/*
+    -- Brainstorming --
+    static class GaempadButton{
+        enum ButtonNames { A, B, X, Y, LEFT_BUMPER, RIGHT_BUTTON }
+
+        String name;
+        GaempadButton behavior;
+    }
+*/
+
+
