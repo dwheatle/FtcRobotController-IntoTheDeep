@@ -72,18 +72,16 @@ public class DigitalInput {
      */
 //    public boolean state() { return (controlState ^ invertState); }
 
-    public boolean pressed() {
-        return risingEdge ^ invertState;
-    }
-    public boolean released() {
-        return fallingEdge ^ invertState;
-    }
-    public boolean whilePressed() {
-        return controlState ^ invertState;
-    }
-    public boolean toggle() {
-        return toggleState ^ invertState;
-    }
+    /* Return methods for buttons */
+    public boolean pressed()      { return risingEdge ^ invertState; }
+    public boolean released()     { return fallingEdge ^ invertState; }
+    public boolean whilePressed() { return controlState ^ invertState;  }
+    public boolean toggle()       { return toggleState ^ invertState;  }
+
+    /* Return methods for digital Inputs */
+    public boolean risingEdge()   { return risingEdge ^ invertState; }
+    public boolean fallingEdge()  { return fallingEdge ^ invertState; }
+    public boolean state()        { return controlState; }
 
 }
 
