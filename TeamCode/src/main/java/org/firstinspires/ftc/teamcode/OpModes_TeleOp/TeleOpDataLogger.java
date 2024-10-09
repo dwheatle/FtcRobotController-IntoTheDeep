@@ -4,9 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 import org.firstinspires.ftc.teamcode.Cogintilities.DataLogger;
-import org.firstinspires.ftc.teamcode.Cogintilities.GpWrapper;
 import org.firstinspires.ftc.teamcode.RobotConfiguration;
 import org.firstinspires.ftc.teamcode.TeamConstants;
 
@@ -20,8 +18,6 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
             .addParam("RJSTKX", "*")
             .addParam("RJSTKX", "*")
             .build();
-
-    GpWrapper ops = new GpWrapper(gamepad1);
 
     int SAMPLE_RATE = 10; // Hz
     ElapsedTime acquisitionTime = new ElapsedTime();
@@ -40,11 +36,6 @@ public class TeleOpDataLogger extends RobotConfiguration implements TeamConstant
             if(acquisitionTime.milliseconds() >= (1000.0 / SAMPLE_RATE)) {
                 updateDataLog();
             }
-
-            ops.update();
-            if(ops.a.pressed()) {ops.update();}
-            if(ops.a.released()) {ops.update();}
-
         }
 
         log.closeDataLogger();
