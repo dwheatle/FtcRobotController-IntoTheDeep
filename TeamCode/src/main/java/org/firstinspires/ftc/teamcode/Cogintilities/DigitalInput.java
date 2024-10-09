@@ -64,21 +64,13 @@ public class DigitalInput {
     }
 
 
-    /**
-     * Gets the current state of the button being monitored. Inverts state if the invertState
-     * variable is set to true.
-     *
-     * @return Current button value
-     */
-//    public boolean state() { return (controlState ^ invertState); }
-
     /* Return methods for buttons */
     public boolean pressed()      { return risingEdge ^ invertState; }
     public boolean released()     { return fallingEdge ^ invertState; }
     public boolean whilePressed() { return controlState ^ invertState;  }
     public boolean toggle()       { return toggleState ^ invertState;  }
 
-    /* Return methods for digital Inputs */
+    /* Return methods for digital Inputs - just changed method verbage */
     public boolean risingEdge()   { return risingEdge ^ invertState; }
     public boolean fallingEdge()  { return fallingEdge ^ invertState; }
     public boolean state()        { return controlState; }
