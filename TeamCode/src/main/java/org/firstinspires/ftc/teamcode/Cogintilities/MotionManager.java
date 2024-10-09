@@ -16,10 +16,12 @@ public class MotionManager {
 
     }
 
+
     /**
      * Manually move a motor using a joystick or other input
      */
     public void jog() { }
+
 
     /**
      * Use SDK controller to move a motor to a given encoder count
@@ -27,6 +29,7 @@ public class MotionManager {
      * @param time
      */
     public void moveToPosition(int setPoint, double time) { }
+
 
     /**
      * These functions ensure an input is withing the physical limits of the robot
@@ -44,6 +47,7 @@ public class MotionManager {
      */
     public boolean minPositionLimitExceeded() { return currentPos < minTravel; }
     public boolean maxPositionLimitExceeded() { return currentPos > maxTravel; }
+
 
     /**
      * This should be called once per while(opModeActive) loop in the teleOp.  This is the only
