@@ -25,7 +25,6 @@ public abstract class RobotConfiguration extends LinearOpMode {
 
     /*------------ Public Class Variables - Frowned Upon ------------*/
     public enum AllianceColor { RED, BLUE }
-    // public int exampleVariable = 0;
 
 
     /*------------- Private Class Variables - Preferred -------------*/
