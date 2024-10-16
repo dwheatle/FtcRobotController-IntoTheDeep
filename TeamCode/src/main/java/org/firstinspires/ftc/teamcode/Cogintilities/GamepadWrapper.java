@@ -25,9 +25,15 @@ public class GamepadWrapper {
 
     private Gamepad gamepad;
 
-
+    /**
+     *
+     * @param gamepad
+     */
     public GamepadWrapper(Gamepad gamepad) { this.gamepad = gamepad; }
 
+    /**
+     * This method should be called once per opMode loop.
+     */
     public void update() {
 
         leftStick_X  = gamepad.left_stick_x;
