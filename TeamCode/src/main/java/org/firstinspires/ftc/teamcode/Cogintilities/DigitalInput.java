@@ -73,7 +73,7 @@ public class DigitalInput {
     /* Return methods for digital Inputs - just changed method verbage */
     public boolean risingEdge()   { return risingEdge ^ invertState;  }
     public boolean fallingEdge()  { return fallingEdge ^ invertState; }
-    public boolean state()        { return controlState ^ invertState }
+    public boolean state()        { return controlState ^ invertState; }
 
 }
 

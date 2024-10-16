@@ -23,6 +23,7 @@ public class ProfilePoint {
         velocity = vel;
         acceleration = acc;
     }
+
     public void setDisp(double disp) { displacement = disp; }
     public void setVel(double vel)   { velocity = vel; }
     public void setAcc(double acc)   { acceleration = acc; }

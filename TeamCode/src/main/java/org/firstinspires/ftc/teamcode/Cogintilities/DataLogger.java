@@ -3,8 +3,7 @@ package org.firstinspires.ftc.teamcode.Cogintilities;
 
 import android.os.Environment;
 
-import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
-import org.firstinspires.ftc.teamcode.RobotConfiguration;
+import org.firstinspires.ftc.teamcode.Robot.RobotConfiguration;
 
 import java.io.File;
 import java.io.FileWriter;

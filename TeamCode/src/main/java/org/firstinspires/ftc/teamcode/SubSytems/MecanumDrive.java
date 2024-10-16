@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.SubSytems;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.teamcode.TeamConstants;
+import org.firstinspires.ftc.teamcode.Robot.TeamConstants;
 
 public class MecanumDrive implements TeamConstants {
 

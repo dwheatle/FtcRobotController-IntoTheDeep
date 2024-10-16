@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.OpModes_TeleOp;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Cogintilities.DataLogger;
-import org.firstinspires.ftc.teamcode.RobotConfiguration;
-import org.firstinspires.ftc.teamcode.TeamConstants;
+import org.firstinspires.ftc.teamcode.Robot.RobotConfiguration;
+import org.firstinspires.ftc.teamcode.Robot.TeamConstants;
 
 //@Disabled
 @TeleOp(name="DataLogExample", group="Development")
